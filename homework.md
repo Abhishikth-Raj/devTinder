@@ -14,3 +14,16 @@
 -install nodemon and add scripts - scripts allow us to run the app in different modes
 -difference between caret and tilda - caret - 4.x.x , tilda - 4.19.x
 -what is the use of "-g" while npm installs nodemon? - installing nodemon globally 
+
+
+28th Nov
+- initialize git - git init
+- .gitignore
+- create a remote repo on github
+- push all the code to github (git add . && git commit -m "message")
+- and git commands from githubs
+- play with routes and route extensions and the effect of SEQUENCE of routes in the code
+- install Postman and test our backend APIs with it
+  - REST API services are being used to connect backend with frontend (HTTP method).
+- Write logic to hande GET, POST, PATCH, DELETE API Calls and test them on Postman
+
