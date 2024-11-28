@@ -27,3 +27,7 @@
   - REST API services are being used to connect backend with frontend (HTTP method).
 - Write logic to hande GET, POST, PATCH, DELETE API Calls and test them on Postman
 
+- Multiple route handlers - play 
+- next();
+- next function and error along with res.send();
+- app.use("/rounte", rh, [rh1, rh2], rh3, rh4);0
