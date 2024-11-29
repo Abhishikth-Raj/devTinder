@@ -30,4 +30,11 @@
 - Multiple route handlers - play 
 - next();
 - next function and error along with res.send();
-- app.use("/rounte", rh, [rh1, rh2], rh3, rh4);0
+- app.use("/rounte", rh, [rh1, rh2], rh3, rh4);
+- What is a Middleware
+- How express JS basically handles requests behind the scenes?
+- Difference in app.use and app.all
+- Write a dummy auth middleware for admin
+- Write a dummy auth middleware for all user routes, except /user/login
+- error handling with "/" wild card (not to be relyed on)
+
