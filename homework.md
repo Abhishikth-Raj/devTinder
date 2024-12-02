@@ -38,3 +38,15 @@
 - Write a dummy auth middleware for all user routes, except /user/login
 - error handling with "/" wild card (not to be relyed on)
 
+- Create a free cluster (of DBs) on MongoDB official website (Mongo Atlas)
+- Install mongoose library
+- connect your application to the Database "connection-url"/devTinder
+- call the connectDB function adn connect to the DB before starting the application on 7777
+- Create a user schema with mongoose and export the model
+- Create POST /signup API to add data to database
+- PUsh some documents using API calls from postman
+
+- JS object vs JSON obj difference
+- Add the express.json middleware to your application
+- make the sign up api, dynamic
+
