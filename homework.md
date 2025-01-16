@@ -37,6 +37,7 @@
 - Write a dummy auth middleware for admin
 - Write a dummy auth middleware for all user routes, except /user/login
 - error handling with "/" wild card (not to be relyed on)
+  app.use("/", (err, req, res, next) =>{})l
 
 - Create a free cluster (of DBs) on MongoDB official website (Mongo Atlas)
 - Install mongoose library
@@ -49,4 +50,10 @@
 - JS object vs JSON obj difference
 - Add the express.json middleware to your application
 - make the sign up api, dynamic
+- create Feed api and get the users with a filter 
+- and all the users without filter
+- user.findOne with duplicate email ids, which object will be returned?
+- write an API to delete the users from DB
+- write an API to update the user using Patch
+- Difference between put and patch
 
