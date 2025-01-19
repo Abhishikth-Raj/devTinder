@@ -1,14 +1,67 @@
 const express = require('express');
-
 //creating an instance of express js application, basically creating a web server that runs on express framework
 const app = express();
-
 const connectDB = require("./configs/database");
 const {adminAuth, userAuth} = require("./middlewares/auth");
 const User = require("./models/user");
+const {validateSignUpData} = require("./utils/userValidation");
+const bcrypt = require("bcrypt");
+const validator = require("validator");
 
 //middleware for JSON to JS conversion of request received to API
 app.use(express.json());
+
+app.post("/signup", async(req, res)=>{
+    //create an instance of the User model
+     
+    try{
+        //1) validate the req.body--------------------------
+        validateSignUpData(req);
+
+        const {firstName, lastName, emailId, password} = req.body;
+
+        //2) encrypt passwords------------------------------
+        const passwordHash = await bcrypt.hash(password,10); //salting by 10 rounds
+
+        //3) save data to the DB----------------------------
+        const user = new User({
+            firstName,
+            lastName,
+            emailId,
+            password: passwordHash,
+        });
+        if(user?.skills.length>15){
+            throw new Error("Skills cannot be more than 15");
+        }
+        await user.save();
+        res.send("User is addedd Successfully");
+    }catch(err){
+        res.status(400).send("SIGN UP ERROR: "+ err.message);
+    }
+});
+
+//login api
+app.post("/login", async(req, res)=>{
+    try{
+        const{emailId,password} = req.body;
+        if(!validator.isEmail(emailId)){
+            throw new Error("Invaild Credentials");
+        }
+        const user = await User.findOne({emailId});
+        if(!user){
+            throw new Error("Invalid Credentials");
+        }
+        
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if(isPasswordValid){
+            res.send("login successful");
+        }else{
+            throw new Error("Invalid Credentials");
+        }
+    }catch(err){
+        res.status(400).send("LOGIN Error: "+err.message);
+    }
+})
 
 //find User by email id or user name
 app.get("/user", async(req, res)=>{
@@ -38,21 +91,6 @@ app.get("/feed", async(req, res)=>{
         }
     }catch(err){
         res.status(404).send(err);
-    }
-});
-
-app.post("/signup", async(req, res)=>{
-    //create an instance of the User model
-    console.log(req.body);
-    const user = new User(req.body);
-     if(user?.skills.length>15){
-            throw new Error("Skills cannot be more than 15");
-        }
-    try{
-        await user.save();
-        res.send("User is addedd Successfully");
-    }catch(err){
-        res.status(400).send("CREATE FAILED: "+ err.message);
     }
 });
 
@@ -86,7 +124,6 @@ app.delete("/user", async(req, res)=>{
 //         console.log(err);
 //     }
 // });
-
 
 //update a user using user id with patch. user id in request params
 app.patch("/user/:userId", async(req, res)=>{

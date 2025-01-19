@@ -15,12 +15,14 @@ const userSchema = new mongoose.Schema({
         maxLength: 50,
         trim: true,
     },
-    username:{
-        type:String,
-        minLength: 4,
-        maxLength: 50,
-        trim: true,
-    },
+    // add username at the end of the project
+    // username:{
+    //     type:String,
+    //     minLength: 8,
+    //     maxLength: 50,
+    //     trim: true,
+        
+    // },
     emailId:{
         type:String,
         required: true,
@@ -37,7 +39,6 @@ const userSchema = new mongoose.Schema({
         type:String,
         required: true,
         minLength: 8,
-        maxLength: 50,
         validate(value){
             if(!validator.isStrongPassword(value)){
                 throw new Error("Password is too weak");

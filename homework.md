@@ -31,7 +31,7 @@
 - next();
 - next function and error along with res.send();
 - app.use("/rounte", rh, [rh1, rh2], rh3, rh4);
-- What is a Middleware
+- What is a Middleware, call back functions that the API request goes through before the execution (res.send()) at the actual route handler
 - How express JS basically handles requests behind the scenes?
 - Difference in app.use and app.all
 - Write a dummy auth middleware for admin
@@ -70,5 +70,14 @@ Data Sanitation and Schema Validations
 - Add API level validation on Patch request & Signup post api
 - Add API validation for each field.
 - Install and Valdiator lib functions
+
+Encryption of passwords
+- Never trust req.body
+- validate
+- encrypt the required data (passwords)
+- then save it to the DB.
+- industry standards - create helper functions in a new utils folder for these
+- create login API
+- compare passwords and throw errors if emai or password is invalid
 
 
