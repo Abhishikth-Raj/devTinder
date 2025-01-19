@@ -56,4 +56,17 @@
 - write an API to delete the users from DB
 - write an API to update the user using Patch
 - Difference between put and patch
+- Explore the Mongoose Documentation for Model methods
+- What are options in a Model.findOneAndUpdate method, explore moer about it
+- API - update the user with email ID - practice
+
+Data Sanitation and Schema Validations
+- restrict the user by adding validation to the data at the schema level
+ - add required, unique lowercase, min , minlength, trim,
+ - default
+- create custom validat function for gender
+- restrict the user to update only reqiuired fields, like, photo, about, gender, age, skills etc,.
+- do not allow them to edit email(for now, later on, write an api to change mail id and verify that mail id through otp verification)
+- Add API level validation on Patch request & Signup post api
+- Add API validation for each field.
 

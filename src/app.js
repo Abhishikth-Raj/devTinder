@@ -45,13 +45,14 @@ app.post("/signup", async(req, res)=>{
     //create an instance of the User model
     console.log(req.body);
     const user = new User(req.body);
-
+     if(user?.skills.length>15){
+            throw new Error("Skills cannot be more than 15");
+        }
     try{
         await user.save();
         res.send("User is addedd Successfully");
     }catch(err){
-        res.status(400).send("Bad Request");
-        console.log(err);
+        res.status(400).send("CREATE FAILED: "+ err.message);
     }
 });
 
@@ -66,19 +67,58 @@ app.delete("/user", async(req, res)=>{
     }
 });
 
-//update a user using patch
-app.patch("/user", async(req, res)=>{
+// //update user data with email, (now email and user id cannot be changed in the user data with this request)
+// app.patch("/user", async(req, res)=>{
+//     try{
+//         const emailId = req.body.emailId;
+//         const data = req.body;
+//         //id cannot be updated
+//         //new data cannot be added like skills, since it is not present in schema
+//         const user = await User.findOneAndUpdate({emailId},data, {
+//             returnDocument: "after",
+//             runValidators: true,
+//         });
+//         //default option is before object
+//         console.log(user);
+//         res.send("User updated successfully");
+//     }catch(err){
+//         res.status(400).send("UPDATE FAILED: " + err.message);
+//         console.log(err);
+//     }
+// });
+
+
+//update a user using user id with patch. user id in request params
+app.patch("/user/:userId", async(req, res)=>{
     try{
-        const userId = req.body.userId;
+        const userId = req.params?.userId;
         const data = req.body;
+        const ALLOWED_UPDATES = [
+            "firstName","lastName","photoUrl","about","gender","age","skills"
+        ];
+        const isUpdateAllowed = Object.keys(data).every((k)=>
+            ALLOWED_UPDATES.includes(k)
+        );
+        if(!isUpdateAllowed){
+            throw new Error("Update not allowed");
+        }
+        if(data?.skills.length>15){
+            throw new Error("Skills cannot be more than 15");
+        }
         //id cannot be updated
         //new data cannot be added like skills, since it is not present in schema
-        const user = await User.findByIdAndUpdate({_id: userId},data);
+        const user = await User.findByIdAndUpdate({_id: userId},data, {
+            returnDocument: "after",
+            runValidators: true,
+        });
         //default option is before object
-        console.log(user);
+        //console.log(user);
+        if(user === null){
+            throw new Error ("User id does not exist");
+        }
         res.send("User updated successfully");
     }catch(err){
-        res.status(400).send("Something went wrong");
+        res.status(400).send("UPDATE FAILED: " + err.message);
     }
 });
 
