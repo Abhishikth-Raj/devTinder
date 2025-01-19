@@ -69,4 +69,6 @@ Data Sanitation and Schema Validations
 - do not allow them to edit email(for now, later on, write an api to change mail id and verify that mail id through otp verification)
 - Add API level validation on Patch request & Signup post api
 - Add API validation for each field.
+- Install and Valdiator lib functions
+
 
