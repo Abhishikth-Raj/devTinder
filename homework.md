@@ -80,4 +80,17 @@ Encryption of passwords
 - create login API
 - compare passwords and throw errors if emai or password is invalid
 
+Authentication processes (advanced)
+- install cookie-parser
+- send a dummy cookie in the login API to the client
+- create a get api to get the profile and validate the dummy cookie
+- install jsonwebtoken
+- in login API, after email and password validation, create a JWT and send it to the client
+- in get/profile API, verify the token using jwt.verify.. read documentation
+- read the cookeis inside your profile API and find the logged in user
+- Add the userAuth middleware in profile API and a new sendConnectionRequest API
+- Set the expiry of JWT token and cookies to 7 days.
+- Create UserSchema method to getJWT()
+- Create UserSchema method to validatePassword(passwordInputByUser);
+
 
