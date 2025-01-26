@@ -94,3 +94,15 @@ Authentication processes (advanced)
 - Create UserSchema method to validatePassword(passwordInputByUser);
 
 
+Implement routing
+- explore tinder APIs
+- create a list of all API u can think of, in Devtinder
+- Group multiple routes under respective routers
+- Read documentation for express.Router
+- Create routes folder for managing auth, profile, request routers
+- import & test the routers in app.js
+- create POST /logout api
+- create PATCH /profile/edit api
+- create PATCH /profile/password api => forgot password API
+- Validate all the data in every POST, PATCH APIs
+

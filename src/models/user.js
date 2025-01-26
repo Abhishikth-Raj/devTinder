@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
     },
     lastName:{
         type:String,
-        minLength: 1,
+        minLength: 0,
         maxLength: 50,
         trim: true,
     },
@@ -88,7 +88,6 @@ userSchema.methods.getJWT = async function(){
     const token = await jwt.sign({_id: user._id}, "Dev@tinder#123",{
         expiresIn:"7d",
     });
-    console.log(token);
     
     return token;
 };
