@@ -120,4 +120,13 @@ Implement routing
 - Write code with proper validations for POST API for accept/reject requests
 - Thought process for POST Vs GET apis 
 - Read about ref and populate 
-- create GET /user/requests/received
+- create GET /user/requests/received - done
+- create GET /user/connections - used OR query
+
+- logic for GET /user/feed API
+- Explore the $nin, $ne other db query operators
+- pagination
+
+Notes:
+    /feed?page=1&limit=10 => 1-10 => .skip(0) & .limit(10);
+    skip = (pageNo - 1)*limit
