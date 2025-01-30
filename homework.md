@@ -106,3 +106,18 @@ Implement routing
 - create PATCH /profile/password api => forgot password API
 - Validate all the data in every POST, PATCH APIs
 
+- Create Connection request schema - done
+- Send Connection Request APIs - done
+- Proper Validation of Data - done
+- Think abot all conrner cass - 4 done
+- $or query $and query in mongoose - read - done
+- schema.pre("save") function - done - it is kind of like a pre hook, before execution of any db function 
+  the method/mw that is specified by this pre hook is executed first
+- What is the advantages and disadvantages of creating and index - read
+- Read --> compound indexes from mongodb docs - read
+- ALWAYS THINK ABOUT CORNER CASES 
+
+- Write code with proper validations for POST API for accept/reject requests
+- Thought process for POST Vs GET apis 
+- Read about ref and populate 
+- create GET /user/requests/received
