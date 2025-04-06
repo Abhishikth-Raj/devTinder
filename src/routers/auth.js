@@ -7,7 +7,7 @@ const validator = require("validator");
 
 authRouter.post("/signup", async(req, res)=>{
     //create an instance of the User model
-     
+     console.log(req.body);
     try{
         //1) validate the req.body--------------------------
         validateSignUpData(req);
@@ -51,7 +51,7 @@ authRouter.post("/login", async(req, res)=>{
             const token = await user.getJWT();
             //res.cookie('rememberme', '1', { expires: new Date(Date.now() + 900000), httpOnly: true })
             res.cookie("token",token, {httpOnly:true});
-            res.send("login successful");
+            res.send(user);
         }else{
             throw new Error("Invalid Credentials");
         }
